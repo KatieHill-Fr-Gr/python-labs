@@ -48,7 +48,7 @@ def apply_discount(price, discount):
 
 print('Exercise 3:', apply_discount(100, 25))
 
-# Exercise 4: Convert Temperature
+# * Exercise 4: Convert Temperature
 #
 # Write a function called `convert_temperature` that takes a
 # temperature and a unit ('C' for Celsius, 'F' for Fahrenheit)
@@ -62,12 +62,19 @@ print('Exercise 3:', apply_discount(100, 25))
 #
 # Define the function and then call it below.
 
+def convert_temperature(temperature, unit):
+    if (unit == "C"):
+        return ((temperature * 9/5) + 32)
+    elif (unit == "F"):
+        return ((temperature - 32) * 5.9)
+    else:
+        return('Please enter a valid temperature and C or F for the unit')
 
 
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
 
-# Exercise 5: Sum to N
+# * Exercise 5: Sum to N
 #
 # Write a function named `sum_to` that takes a single integer n and returns the sum of all integers from 1 to n.
 #
@@ -77,11 +84,15 @@ print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
 #
 # Define the function and then call it below.
 
+def sum_to(n):
+    return sum(range(n + 1))
+# ? This works because n + 1 gives you a range of 0-6 (so 7 values in total)
+# ? The built-in range function starts at 0 by default
 
 
 print('Exercise 5:', sum_to(6))
 
-# Exercise 6: Find the Largest Number
+# * Exercise 6: Find the Largest Number
 #
 # Write a function named `largest` that takes three integers as arguments and returns the largest of them.
 #
@@ -91,6 +102,13 @@ print('Exercise 5:', sum_to(6))
 #
 # Define your function and test it with different inputs.
 
+def largest(x, y, z):
+    if (x > y and x > z):
+        return z 
+    elif (y > x and y > z):
+        return y 
+    else: 
+        return z
 
 
 print('Exercise 6:', largest(1, 2, 3))
@@ -105,11 +123,12 @@ print('Exercise 6:', largest(1, 2, 3))
 #
 # Write your function and test its output below.
 
-
+def calculate_tip(bill, tip):
+    return bill + (bill / 100 * tip)
 
 print('Exercise 7:', calculate_tip(50, 20))
 
-# Exercise 8: Calculate Product of Numbers
+# * Exercise 8: Calculate Product of Numbers
 #
 # Write a function named `product` that takes an arbitrary number of numbers, multiplies them, and returns the product.
 # Review your notes on *args for handling an arbitrary number of arguments.
@@ -120,11 +139,15 @@ print('Exercise 7:', calculate_tip(50, 20))
 #
 # Define the function and call it with different sets of numbers to test.
 
-
+def product(*args):
+    result = 1
+    for arg in args:
+        result *= arg
+    return result
 
 print('Exercise 8:', product(2, 5, 5))
 
-# Exercise 9: Basic Calculator
+# * Exercise 9: Basic Calculator
 #
 # Create a function named `basic_calculator` that takes three arguments: 
 # two numbers and a string representing an operation ('add', 'subtract', 'multiply', 'divide'). 
@@ -138,6 +161,18 @@ print('Exercise 8:', product(2, 5, 5))
 # basic_calculator(10, 5, 'divide') should return 2.
 #
 # Define the function and then call it below.
+
+def basic_calculator(x, y, operator):
+    if (operator == 'add'):
+        return x + y
+    elif (operator == 'subtract'):
+        return x - y
+    elif (operator == 'multiply'):
+        return x * year
+    elif (operator == 'divide'):
+        return x / y
+    else:
+        return 'Please enter valid numbers'
 
 
 
