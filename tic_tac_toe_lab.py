@@ -11,18 +11,27 @@ class Game():
         }
 
     def play_game(self):
-        print("Welcome to the game. Enter a square to make your first move")
+        print("Ready to play?")
+        while self.winner is None and self.tie == False:
+                self.render()
+                self.place_piece()
+                self.check_winner()
+                self.check_for_tie()
+                self.switch_turn()
+    
+        self.render()
+
 
     def print_board(self):
         b = self.board
         print(f"""
-             A   B   C
+            A   B   C
             1)  {b['a1'] or ' '} | {b['b1'] or ' '} | {b['c1'] or ' '}
-            ----------
+             ----------
             2)  {b['a2'] or ' '} | {b['b2'] or ' '} | {b['c2'] or ' '}
-            ----------
+             ----------
             3)  {b['a3'] or ' '} | {b['b3'] or ' '} | {b['c3'] or ' '}
-          """)
+            """)
         
     def print_message(self):
         if (self.tie==True):
@@ -46,16 +55,41 @@ class Game():
                 print("Invalid move. Please try again")
 
     def check_winner(self):
-        self.board['a1'] and (self.board['a1'] == self.board['b1'] == self.board['c1'])
-        self.board['a2'] and (self.board['a2'] == self.board['b2'] == self.board['c2'])
+            win_conditions = [
+                ['a1', 'b1', 'c1'],
+                ['a2', 'b2', 'c2'],
+                ['a3', 'b3', 'c3'],
+                ['a1', 'a2', 'a3'],
+                ['b1', 'b2', 'b3'],
+                ['c1', 'c2', 'c3'],
+                ['a1', 'b2', 'c3'],
+                ['a3', 'b2', 'c1']
+            ]
+           
+            for combo in win_conditions:
+                if (self.board[combo[0]] and
+                    self.board[combo[0]] == self.board[combo[1]] == self.board[combo[2]]):
+                    self.winner = self.turn
+                    print(f'{self.winner} has won the game!')
+                    return True
+            
+            return False
+    
+    def check_for_tie(self):
+        if None not in self.board.values() and self.winner is None:
+            self.tie = True
+            print("It's a tie!")
 
+    
+    def switch_turn(self):
+        # if self.turn == "X":
+        #     self.turn = "O"
+        # elif self.turn == "O":
+        #     self.turn = "X"
+        self.turn = {"X": "O", "O": "X"}[self.turn] 
 
-
-
-
-
-
-
+# {"X": "O", "O": "X"} creates the dictionary
+# [self.turn] immediately looks up whatever value self.turn contains
 
 
 tic_tac_toe = Game()
